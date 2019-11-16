@@ -1,0 +1,91 @@
+Transcript: the makeover to me just feels like they've upgraded the bathroom towards like. Doesn't smell like urine in here that's that's nice but the ivy is still on the walls
+Word: the
+Start time: 0 seconds 400000000 nanos
+End time: 0 seconds 700000000 nanos
+Word: makeover
+Start time: 0 seconds 700000000 nanos
+End time: 1 seconds 300000000 nanos
+Word: to
+Start time: 1 seconds 300000000 nanos
+End time: 1 seconds 500000000 nanos
+Word: me
+Start time: 1 seconds 500000000 nanos
+End time: 1 seconds 600000000 nanos
+Word: just
+Start time: 1 seconds 600000000 nanos
+End time: 1 seconds 900000000 nanos
+Word: feels
+Start time: 1 seconds 900000000 nanos
+End time: 2 seconds 100000000 nanos
+Word: like
+Start time: 2 seconds 100000000 nanos
+End time: 2 seconds 300000000 nanos
+Word: they've
+Start time: 2 seconds 300000000 nanos
+End time: 2 seconds 800000000 nanos
+Word: upgraded
+Start time: 2 seconds 800000000 nanos
+End time: 3 seconds 200000000 nanos
+Word: the
+Start time: 3 seconds 200000000 nanos
+End time: 3 seconds 600000000 nanos
+Word: bathroom
+Start time: 3 seconds 600000000 nanos
+End time: 4 seconds 100000000 nanos
+Word: towards
+Start time: 4 seconds 100000000 nanos
+End time: 4 seconds 500000000 nanos
+Word: like.
+Start time: 4 seconds 500000000 nanos
+End time: 4 seconds 800000000 nanos
+Word: Doesn't
+Start time: 4 seconds 800000000 nanos
+End time: 5 seconds 200000000 nanos
+Word: smell
+Start time: 5 seconds 200000000 nanos
+End time: 5 seconds 600000000 nanos
+Word: like
+Start time: 5 seconds 600000000 nanos
+End time: 5 seconds 900000000 nanos
+Word: urine
+Start time: 5 seconds 900000000 nanos
+End time: 6 seconds 200000000 nanos
+Word: in
+Start time: 6 seconds 200000000 nanos
+End time: 6 seconds 500000000 nanos
+Word: here
+Start time: 6 seconds 500000000 nanos
+End time: 6 seconds 700000000 nanos
+Word: that's
+Start time: 6 seconds 700000000 nanos
+End time: 7 seconds 100000000 nanos
+Word: that's
+Start time: 7 seconds 100000000 nanos
+End time: 8 seconds 0 nanos
+Word: nice
+Start time: 8 seconds 0 nanos
+End time: 8 seconds 200000000 nanos
+Word: but
+Start time: 8 seconds 200000000 nanos
+End time: 8 seconds 400000000 nanos
+Word: the
+Start time: 8 seconds 400000000 nanos
+End time: 8 seconds 500000000 nanos
+Word: ivy
+Start time: 8 seconds 500000000 nanos
+End time: 8 seconds 800000000 nanos
+Word: is
+Start time: 8 seconds 800000000 nanos
+End time: 8 seconds 900000000 nanos
+Word: still
+Start time: 8 seconds 900000000 nanos
+End time: 9 seconds 100000000 nanos
+Word: on
+Start time: 9 seconds 100000000 nanos
+End time: 9 seconds 300000000 nanos
+Word: the
+Start time: 9 seconds 300000000 nanos
+End time: 9 seconds 300000000 nanos
+Word: walls
+Start time: 9 seconds 300000000 nanos
+End time: 9 seconds 900000000 nanos

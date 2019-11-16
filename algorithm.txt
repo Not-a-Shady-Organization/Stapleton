@@ -1,0 +1,26 @@
+
+PREPROCESSING
+.Download many captions by YT video code
+.These are chopped into word by word time cues and stored in a vocabulary TSV
+
+PROGRAM
+.User enters a phrase
+.Map phrase word by word to vocabulary TSVs
+.Select an occurrence of the word to use (prefer big length)
+.Download each occurrence with a spare leading and trailing 1.5s
+.Convert these clips to mono FLAC
+.Send the audio to Google Speech API
+Find more accurate word timing in results (and store?)
+.Crop clip to just the word
+[Optional: send single word to API and confirm & record confidence]
+[Optional: slow clips or pitch shift for increased creepiness & comprehension]
+Stitch clips together
+[Optional: send message to API and approve if correct with high confidence]
+Message complete!
+
+
+
+--Thoughts--
+Allow to insert pauses?
+Knowledge graph to request topics
+Name a channel and we'll make a ransom of that
