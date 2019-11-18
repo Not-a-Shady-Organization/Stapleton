@@ -7,7 +7,6 @@ import csv
 VOCAB_DIRECTORY = './vocabulary'
 
 
-
 def expand_vocabulary(video_code):
     # This is where captions will always be downloaded (semi-hardcoded by youtube_dl)
     filepath = f'captions/{video_code}.en.vtt'

@@ -2,7 +2,7 @@ from google.cloud import speech_v1p1beta1
 import io
 import sys
 
-def sample_recognize(local_file_path):
+def sample_recognize(local_file_path, log_filepath):
     """
     Print start and end time of each word spoken in audio file from Cloud Storage
 
@@ -31,19 +31,21 @@ def sample_recognize(local_file_path):
     result = response.results[0]
     # First alternative is the most probable result
     alternative = result.alternatives[0]
-    print(u"Transcript: {}".format(alternative.transcript))
-    # Print the start and end time of each word
-    for word in alternative.words:
-        print(u"Word: {}".format(word.word))
-        print(u"Confidence: {}".format(word.confidence))
-        print(
-            u"Start time: {} seconds {} nanos".format(
-                word.start_time.seconds, word.start_time.nanos
+    with open(log_filepath, 'a') as log:
+        log.write(f'\nFile: {local_file_path}\n')
+        log.write(f'transcription: {alternative.transcript}\n')
+
+        for word in alternative.words:
+            log.write(f'Word: {word.word}\n')
+            log.write(f'Conf: {word.confidence}\n')
+            log.write(
+                u"Start time: {} seconds {} nanos\n".format(
+                    word.start_time.seconds, word.start_time.nanos
+                )
             )
-        )
-        print(
-            u"End time: {} seconds {} nanos".format(
-                word.end_time.seconds, word.end_time.nanos
+            log.write(
+                u"End time: {} seconds {} nanos\n".format(
+                    word.end_time.seconds, word.end_time.nanos
+                )
             )
-        )
     return alternative

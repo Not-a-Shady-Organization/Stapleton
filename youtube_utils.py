@@ -19,19 +19,13 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
 
 
-def video_to_flac(word, video_filepath):
-    convert_to_flac_command = f'ffmpeg -y -i {video_filepath} -c:a flac audio/dual-{word}.flac'
-    check_output(convert_to_flac_command, shell=True)
+def video_to_flac(video_filepath, mono_filepath, log_filepath=''):
+    with open(log_filepath, 'a') as log:
+        log.write(f'Converting {video_filepath} to audio...\n')
 
-    flac_to_mono_flac_command = f'ffmpeg -y -i audio/dual-{word}.flac -ac 1 audio/mono-{word}.flac'
-    check_output(flac_to_mono_flac_command, shell=True)
-
-    return f'audio/mono-{word}.flac'
-
-
-def audio_to_captions(audio_filepath):
-    speech_recognition_command = f'{audio_filepath}'
-
+        flac_to_mono_flac_command = f'ffmpeg -y -i {video_filepath} -c:a flac -ac 1 {mono_filepath}'
+        log.write(f'Executing: {flac_to_mono_flac_command}\n')
+        check_output(flac_to_mono_flac_command, shell=True, stderr=log)
 
 
 def seconds_to_timecode(seconds):
@@ -69,28 +63,27 @@ def download_captions(video_code):
         result = ydl.extract_info(video_url)
 
 
-def change_video_speed(video, multiplier):
-    command = f'ffmpeg -i {video} -filter_complex "[0:v]setpts={str(float(1/multiplier))}*PTS[v];[0:a]atempo={str(multiplier)}[a]" -map "[v]" -map "[a]" slow-{video}'
-    print(f'Executing: {command}')
-    check_output(command, shell=True)
-    return f'slow-{video}'
+def change_video_speed(video_filepath, multiplier, output_filepath, log_filepath=''):
+    command = f'ffmpeg -y -i {video_filepath} -filter_complex "[0:v]setpts={str(float(1/multiplier))}*PTS[v];[0:a]atempo={str(multiplier)}[a]" -map "[v]" -map "[a]" {output_filepath}'
+    with open(log_filepath, 'a') as log:
+        log.write(f'Executing: {command}\n')
+        check_output(command, shell=True, stderr=log)
 
 
-def video_code_to_url(video_code):
+def video_code_to_url(video_code, log_filepath=''):
     url = f'https://www.youtube.com/watch?v={video_code}'
     command = f'youtube-dl -g {url}'
-    response = check_output(command, shell=True).decode().split('\n')[:-1]
+    with open(log_filepath, 'a') as log:
+        response = check_output(command, shell=True, stderr=log).decode().split('\n')[:-1]
     return response
 
 # TODO: If you start to close to the beginning of a video, we fail for lookahead
-def download_video(video_code, start_time, end_time, output, safety_buffer=5, lookahead=10):
-    # lookahead: lead time to grab keyframes from
-    # start_reading: time to start downloading OFFSET from the lookahead
-    # clip_length: video amount to download after t=(start_time - lookahead + start_reading)
+def download_video(video_code, start_time, end_time, output, safety_buffer=5, lookahead=10, log_filepath=''):
     clip_length = end_time - start_time + (2 * safety_buffer)
 
     # Get the true URLs of audio and video from the video_code
-    url_one, url_two = video_code_to_url(video_code)
+    url_one, url_two = video_code_to_url(video_code, log_filepath)
 
     ffmpeg_command = f'ffmpeg -y -ss {seconds_to_timecode(start_time - lookahead)} -i "{url_one}" -ss {seconds_to_timecode(start_time - lookahead)} -i "{url_two}" -map 0:v -map 1:a -ss {lookahead - safety_buffer} -t {seconds_to_timecode(clip_length)} -c:v libx264 -c:a aac {output}'
-    check_output(ffmpeg_command, shell=True)
+    with open(log_filepath, 'a') as log:
+        check_output(ffmpeg_command, shell=True, stderr=log)

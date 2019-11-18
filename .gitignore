@@ -1,9 +1,13 @@
 env
 __pycache__
-audio
+.DS_Store
+
+media
 captions
-clips
-slow-clips
 videograms
-word-clips
+logs
+
 vocabulary
+trusted-vocabulary
+
+auth-key-file.json

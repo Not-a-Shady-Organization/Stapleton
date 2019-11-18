@@ -1,24 +1,16 @@
 import argparse
 from clip_word import clip_word
 from subprocess import check_output
-from speech_to_text import sample_long_running_recognize
-from youtube_utils import upload_blob, video_to_flac
+from speech_to_text import sample_recognize
+from youtube_utils import video_to_flac
 
 
 clean_word = lambda x: ''.join([c for c in x.lower() if c.isalpha() or c.isdigit() or c==' ']).rstrip()
 
-def check_transcription(filename, phrase):
-    audio_filepath = video_to_flac(phrase, 'videograms/' + filename)
-    upload_blob('motley-audio-clips', audio_filepath, f'{filename}')
-#    text = sample_long_running_recognize(f'gs://motley-audio-clips/{filename}')
+# TODO: Add time checking... Check time for word utterance and cut audio after word.. or dim volume
 
-#    transcript = text.transcript
-#    if transcript == text.transcript:
-#        print('Videogram matches phrase!')
-
-    pass
-
-
+# TODO: Create videogram. Then Quality check that. If certain word not seen swap out for another edition
+#       requires "stocking" of trusted vocab with multiple editions of word
 def ransom_videogram(phrase):
     safe_phrase = [clean_word(word) for word in phrase]
 
@@ -36,7 +28,7 @@ def ransom_videogram(phrase):
     stitch_command = f'ffmpeg -f concat -safe 0 -i concat.txt -c copy videograms/{output_filename}'
     check_output(stitch_command, shell=True)
 
-    check_transcription(output_filename, phrase_text)
+#    check_transcription(output_filename, phrase_text)
 
 
 if __name__ == '__main__':
