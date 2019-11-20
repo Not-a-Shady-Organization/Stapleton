@@ -19,7 +19,7 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
     )
 
 
-def video_to_flac(video_filepath, mono_filepath, log_filepath=''):
+def video_to_flac(video_filepath, mono_filepath, log_filepath=None):
     with open(log_filepath, 'a') as log:
         log.write(f'Converting {video_filepath} to audio...\n')
 
@@ -61,6 +61,11 @@ def download_captions(video_code):
     # Download
     with ydl:
         result = ydl.extract_info(video_url)
+
+
+def change_audio_speed(audio_filepath, multiplier, output_filepath, log_filepath=''):
+    command = f'ffmpeg -i {audio_filepath} -filter:a "atempo={str(multiplier)}" -vn {output_filepath}'
+    check_output(command, shell=True)
 
 
 def change_video_speed(video_filepath, multiplier, output_filepath, log_filepath=''):
