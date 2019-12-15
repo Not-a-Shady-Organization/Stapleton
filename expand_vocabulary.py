@@ -1,5 +1,6 @@
 import argparse
-from youtube_utils import download_captions, timecode_to_seconds
+from youtube_utils import download_captions
+from utils import timecode_to_seconds
 import os
 import csv
 
@@ -20,7 +21,6 @@ def expand_vocabulary(video_code):
     print('Complete!')
 
 
-
 def write_to_tsv(row, header, filepath):
     mode = 'w'
     if os.path.exists(filepath):
@@ -36,7 +36,10 @@ def write_to_tsv(row, header, filepath):
 
 remove_c_tags = lambda x: x.replace('<c>', '').replace('</c>', '')
 
+
 def atomize_captions(video_code, caption_filepath):
+    '''Finds start and end time of all words in .vtt caption file and writes to vocabulary.'''
+
     master_cue_list = []
 
     with open(caption_filepath) as f:
